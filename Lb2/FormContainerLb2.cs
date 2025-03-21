@@ -169,14 +169,14 @@ namespace Lb2
             for (int i = 0; i < n; i++)
             {
                 int curr = rnd.Next(1, n);
-                Person curr_value = array[curr-1];
+                Person curr_value = array[curr - 1];
             }
             random_array = Environment.TickCount - StartTime;
-            Stack <Person> helpStack = new Stack<Person>();
+            Stack<Person> helpStack = new Stack<Person>();
             StartTime = Environment.TickCount;
             for (int i = 0; i < n; i++)
             {
-                int curr = rnd.Next(1, n); 
+                int curr = rnd.Next(1, n);
                 curr--;
                 for (int j = 0; j != n; j++) helpStack.Push(stack.Pop());
                 while (helpStack.Count > 0)
@@ -197,6 +197,23 @@ namespace Lb2
             lvi2.SubItems.Add(Convert.ToString(ordered_stack));
             lvi2.SubItems.Add(Convert.ToString(random_stack));
             testingTable.Items.Add(lvi2);
+        }
+
+        /// <summary>
+        /// Функция для клонирования объектов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cloneButton_Click(object sender, EventArgs e)
+        {
+            int val = (int)number.Value;
+            people.NotifyAdd += changeTable;
+            Person? person = people.Find(val);
+            Person? person_clone = person?.Clone() as Person;
+            if (person_clone != null)
+            {
+                people.Add(person_clone);
+            }
         }
     }
 }

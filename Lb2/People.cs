@@ -55,22 +55,26 @@ namespace Lb2
         {
             DataTable dataTable = new DataTable();
 
-            // Добавление колонок
-            dataTable.Columns.Add("ID", typeof(int));
-            dataTable.Columns.Add("Имя", typeof(string));
-            dataTable.Columns.Add("Фамилия", typeof(string));
-            dataTable.Columns.Add("Пол", typeof(string));
-            dataTable.Columns.Add("Год рожд.", typeof(int));
-            dataTable.Columns.Add("Город", typeof(string));
-            dataTable.Columns.Add("Страна", typeof(string));
-            dataTable.Columns.Add("Рост", typeof(double));
-
-            int counter = 0;
-            // Добавление строк
-            foreach (Person person in peopleStack)
+            if (peopleStack.Count > 0)
             {
-                dataTable.Rows.Add(counter++, person.name, person.surname, person.Gender, person.Year_of_birth,
-                    person.City, person.Country, person.Height);
+
+                // Добавление колонок
+                dataTable.Columns.Add("ID", typeof(int));
+                dataTable.Columns.Add("Имя", typeof(string));
+                dataTable.Columns.Add("Фамилия", typeof(string));
+                dataTable.Columns.Add("Пол", typeof(string));
+                dataTable.Columns.Add("Год рожд.", typeof(int));
+                dataTable.Columns.Add("Город", typeof(string));
+                dataTable.Columns.Add("Страна", typeof(string));
+                dataTable.Columns.Add("Рост", typeof(double));
+
+                int counter = 0;
+                // Добавление строк
+                foreach (Person person in peopleStack)
+                {
+                    dataTable.Rows.Add(counter++, person.name, person.surname, person.Gender, person.Year_of_birth,
+                        person.City, person.Country, person.Height);
+                }
             }
 
             return dataTable;
@@ -82,8 +86,14 @@ namespace Lb2
         /// <param name="person">новый человек</param>
         public void Add(Person person)
         {
-            peopleStack.Push(person);
-            NotifyAdd?.Invoke();
+            try
+            {
+                peopleStack.Push(person);
+                NotifyAdd?.Invoke();
+            }
+            catch (Exception) {
+                Console.WriteLine("Error: Add(Person person) in People.cs");
+            }
         }
 
         /// <summary>
@@ -92,6 +102,33 @@ namespace Lb2
         public People()
         {
             peopleStack = new Stack<Person>();
+        }
+
+        /// <summary>
+        /// Ищет объект в стеке по индексу
+        /// </summary>
+        /// <param name="id">индекс искомого объекта</param>
+        /// <returns>если объект найден, возвращает объект, иначе - null</returns>
+        public Person? Find(int id)
+        {
+            Stack<Person> helpStack = new Stack<Person>();
+            int count = 0;
+            Person curr = null;
+            while (peopleStack.Count > 0)
+            {
+                curr = peopleStack.Pop();
+                helpStack.Push(curr);
+                if (count == id)
+                {
+                    break;
+                }
+                count++;
+            }
+            while (helpStack.Count > 0)
+            {
+                peopleStack.Push(helpStack.Pop());
+            }
+            return curr;
         }
 
         /// <summary>
@@ -116,7 +153,14 @@ namespace Lb2
             {
                 peopleStack.Push(helpStack.Pop ());
             }
-            NotifyRemove?.Invoke();
+            try
+            {
+                NotifyRemove?.Invoke();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error: Remove(Person person) in People.cs");
+            }
         }
     }
 }

@@ -6,6 +6,50 @@ namespace Lb2.Tests
     public class PeopleTests
     {
         [Fact]
+        public void Find_CorrectFind_ReturnPerson()
+        {
+            // Arrange
+            var people = new People();
+            var person = new Person
+            {
+                name = "John",
+                surname = "Doe",
+                Gender = "Male",
+                Year_of_birth = 1990,
+                City = "New York",
+                Country = "USA",
+                Height = 180.5
+            };
+
+            people.Add(person);
+            person = new Person
+            {
+                name = "Jack",
+                surname = "Doe",
+                Gender = "Male",
+                Year_of_birth = 2004,
+                City = "New York",
+                Country = "USA",
+                Height = 168.7
+            };
+            people.Add(person);
+
+            // Assert
+            Assert.Equal("Jack", people?.Find(0)?.name);
+        }
+
+        [Fact]
+        public void Find_CorrectFind_ReturnNull()
+        {
+            // Arrange
+            var people = new People();
+
+            // Act & Assert
+            Person? ps = people.Find(0);
+            Assert.Null(ps);
+        }
+
+        [Fact]
         public void Add_Clone_Person()
         {
             Person person = new Person

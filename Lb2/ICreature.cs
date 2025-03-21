@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lb2
 {
+    /// <summary>
+    /// Интерфейс Прототип
+    /// </summary>
     public interface ICreature
     {
         ICreature Clone();

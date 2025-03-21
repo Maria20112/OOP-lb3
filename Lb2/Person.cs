@@ -76,6 +76,10 @@ namespace Lb2
         /// </summary>
         public static int Persons_count { get; private set; }
 
+        /// <summary>
+        /// метод для клонирования объектов
+        /// </summary>
+        /// <returns>копия объекта</returns>
         public ICreature Clone()
         {
             return new Person(this.name, this.surname, this.Gender, Convert.ToString(this.Year_of_birth), this.City,
@@ -295,7 +299,7 @@ namespace Lb2
         /// <returns>True, если проверка пройдена, иначе - false</returns>
         static public bool IsRightName(string str)
         {
-            string regex = @"^[A-Za-zА-Яа-яЁё]+((-|')[A-Za-zА-Яа-яЁё]+)*$";
+            string regex = @"^[A-Za-zА-Яа-яЁё]+((-|'| )[A-Za-zА-Яа-яЁё]+)*$";
             return Regex.IsMatch(str, regex);
         }
     }

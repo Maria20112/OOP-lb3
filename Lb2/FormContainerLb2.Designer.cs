@@ -51,7 +51,6 @@
             label1 = new Label();
             label12 = new Label();
             number = new NumericUpDown();
-            label3 = new Label();
             panel3 = new Panel();
             data = new Label();
             deleteButton = new Button();
@@ -63,6 +62,7 @@
             addition = new ColumnHeader();
             sequentialChoice = new ColumnHeader();
             randomChoice = new ColumnHeader();
+            cloneButton = new Button();
             ((System.ComponentModel.ISupportInitialize)year_of_birth).BeginInit();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -282,7 +282,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(83, 32);
+            label12.Location = new Point(83, 3);
             label12.Name = "label12";
             label12.Size = new Size(119, 20);
             label12.TabIndex = 64;
@@ -290,27 +290,17 @@
             // 
             // number
             // 
-            number.Location = new Point(70, 55);
+            number.Location = new Point(70, 26);
             number.Name = "number";
             number.Size = new Size(150, 27);
             number.TabIndex = 63;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(76, 12);
-            label3.Name = "label3";
-            label3.Size = new Size(139, 20);
-            label3.TabIndex = 62;
-            label3.Text = "Удаление объекта";
-            // 
             // panel3
             // 
+            panel3.Controls.Add(cloneButton);
             panel3.Controls.Add(data);
             panel3.Controls.Add(label12);
             panel3.Controls.Add(deleteButton);
-            panel3.Controls.Add(label3);
             panel3.Controls.Add(number);
             panel3.Location = new Point(12, 575);
             panel3.Name = "panel3";
@@ -328,7 +318,7 @@
             // deleteButton
             // 
             deleteButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            deleteButton.Location = new Point(28, 88);
+            deleteButton.Location = new Point(28, 59);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(235, 29);
             deleteButton.TabIndex = 66;
@@ -407,6 +397,17 @@
             // 
             randomChoice.Text = "Случайный выбор";
             // 
+            // cloneButton
+            // 
+            cloneButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            cloneButton.Location = new Point(28, 87);
+            cloneButton.Name = "cloneButton";
+            cloneButton.Size = new Size(235, 29);
+            cloneButton.TabIndex = 68;
+            cloneButton.Text = "Клонировать";
+            cloneButton.UseVisualStyleBackColor = true;
+            cloneButton.Click += cloneButton_Click;
+            // 
             // FormContainerLb2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -462,7 +463,6 @@
         private Label label1;
         private Label label12;
         private NumericUpDown number;
-        private Label label3;
         private Panel panel3;
         private Label data;
         private Button deleteButton;
@@ -474,5 +474,6 @@
         private ColumnHeader addition;
         private ColumnHeader sequentialChoice;
         private ColumnHeader randomChoice;
+        private Button cloneButton;
     }
 }
